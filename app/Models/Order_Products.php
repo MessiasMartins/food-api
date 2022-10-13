@@ -9,6 +9,8 @@ class Order_Products extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_products';
+
     public function order()
     {
         return $this->hasOne(Order::class,'id', 'order_id');

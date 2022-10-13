@@ -13,4 +13,9 @@ class Order extends Model
     {
         return $this->hasOne(Client::class,'id', 'client_id');
     }
+
+    public function itens()
+    {
+        return $this->hasMany(Order_Pruducts::class);
+    }
 }
