@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Product;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProductResourceCollection extends ResourceCollection
 {
+    //Remove o Data do Json
     public static $wrap = null;
     /**
      * Transform the resource collection into an array.

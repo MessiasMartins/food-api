@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\ProductResourceCollection;
+use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\Product\ProductResourceCollection;
 
 
 class ProductController extends Controller

@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class OrderResourceCollection extends ResourceCollection
 {
+    public static $wrap = null;
     /**
      * Transform the resource collection into an array.
      *
