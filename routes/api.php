@@ -23,6 +23,7 @@ Route::middleware('jwt.auth')->group(function() {
     Route::apiResource('product', ProductController::class);
     Route::apiResource('order', OrderController::class);
     Route::apiResource('client', ClientController::class);
+    Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
 });
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
