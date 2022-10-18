@@ -22,10 +22,10 @@ use App\Http\Controllers\ClientController;
 Route::middleware('jwt.auth')->group(function() {
     Route::apiResource('product', ProductController::class);
     Route::apiResource('order', OrderController::class);
+    Route::apiResource('client', ClientController::class);
 });
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::apiResource('client', ClientController::class);
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //return $request->user();
