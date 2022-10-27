@@ -11,6 +11,12 @@ class Order_Products extends Model
 
     protected $table = 'order_products';
 
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'amount'
+    ];
+
     public function order()
     {
         return $this->hasOne(Order::class,'id', 'order_id');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Order_Products;
 use App\Models\Product;
 use Carbon\Carbon;
 use http\Client\Response;
@@ -13,7 +14,7 @@ use App\Http\Resources\Order\OrderResourceCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
-class OrderController extends Controller
+class  OrderController extends Controller
 {
     public function __construct()
     {
@@ -33,16 +34,7 @@ class OrderController extends Controller
 
             $client = Client::findOrFail($request->client_id);
 
-//            $produtos = $request->products;
-
-//            $prods = [];
-//            foreach ($produtos as $produto) {
-//                $prod_aux = Product::find($produto->id);
-//                if(!$prod_aux){
-//                    throw new \Exception("Produto {$produto->id} Não existe!");
-//                }
-//                $prods[] = $prod_aux;
-//            }
+            $produtos = $request->products;
 
             $order = new Order();
             $order->client_id = $client->id;
@@ -52,13 +44,22 @@ class OrderController extends Controller
 
             $order->save();
 
-//            foreach ($prods as $prod) {
-//                $order->products()->save($prod);
-//            }
+            foreach ($produtos as $produto) {
+                $prod= Product::find($produto['id']);
+                if(!$prod){
+                    throw new \Exception("Produto {$produto['id']} Não existe!");
+                }
+
+                Order_Products::create([
+                    'order_id' => $order->id,
+                    'product_id' => $prod->id,
+                    'amount' => $produto['quant']
+                ]);
+            }
 
             DB::commit();
 
-            return response()->json(['status' => 'success', 'order' => $order], 201);
+            return new OrderResource($order);
         }catch (\Exception $ex){
             DB::rollBack();
             return response()->json(['status' => 'error', 'erro' => $ex->getMessage()], 401);

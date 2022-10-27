@@ -26,6 +26,6 @@ class Order extends Model
 
     public function itens()
     {
-        return $this->hasMany(Order_Pruducts::class);
+        return $this->hasMany(Order_Products::class);
     }
 }
