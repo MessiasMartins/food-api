@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Client;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ClientResourceCollection extends ResourceCollection
+class UserResourceCollection extends ResourceCollection
 {
-    public static $wrap = null;
     /**
      * Transform the resource collection into an array.
      *
@@ -15,6 +14,6 @@ class ClientResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return ClientResource::collection($this->collection);
+        return parent::toArray($request);
     }
 }
