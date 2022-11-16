@@ -18,7 +18,18 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        return $this->product->create($request->all());
+        //$request->validate();
+
+        try{
+            //DB::beginTransaction();
+            $product = Product::create($request->all());
+
+    //DB::commit();
+            return response()->json(new ProductResource($product), 201);
+        } catch (\Exception $ex) {
+            response()->json($ex->getMessage(), 400);
+                //DB::rollBack();
+        }
     }
 
     public function show(Product $product)
