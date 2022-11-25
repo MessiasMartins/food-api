@@ -19,10 +19,10 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::apiResource('product', ProductController::class);
 
 Route::middleware('jwt.auth')->group(function() {
 //    Route::apiResource('product', ProductController::class);
+    Route::apiResource('product', ProductController::class);
     Route::apiResource('order', OrderController::class);
     Route::apiResource('client', ClientController::class);
     Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
